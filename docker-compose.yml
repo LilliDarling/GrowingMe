@@ -8,19 +8,25 @@ services:
   #   ports:
   #     - "5173:5173"
   api:
+    env_file: 
+      - ".env"
     build:
-      context: ./api
+      context: api
       dockerfile: Dockerfile.dev
     environment:
-      
+      CORS_HOST: http://localhost:5173
+      MONGO_DB_URI: ${MONGO_DB_URI}
+      SIGNING_KEY: ${SIGNING_KEY}
+      WAIT_HOSTS: mongo:27017
     ports:
       - "8000:8000"
     volumes:
       - ./api:/app
+
   mongo:
     image: mongo:latest
     env_file: 
-      - ./.env
+      - ".env"
     environment:
       MONGO_USERNAME: ${MONGO_USERNAME}
       MONGO_PASSWORD: ${MONGO_PASSWORD}
