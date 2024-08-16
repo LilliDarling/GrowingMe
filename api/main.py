@@ -26,6 +26,7 @@ app.include_router(category.router, tags=["Category"])
 async def startup():
 	try:
 		await client.admin.command('ping')
+		print("Connected Successfully! ")
 	except Exception as e:
 		print(f"Unable to connect database: {e}")
 		import sys
