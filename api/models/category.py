@@ -1,5 +1,5 @@
 from odmantic import Model
 
 
-class Category:
-  pass
+class Category(Model):
+  name: str
