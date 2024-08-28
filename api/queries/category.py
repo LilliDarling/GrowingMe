@@ -13,7 +13,7 @@ class CategoryQueries:
 		return get_engine("category")
 
 	def create_category(self, category: Category):
-		pass
+		self.collection.insert_one(category)
 
 
 	def get_category():
