@@ -27,6 +27,7 @@ services:
     image: mongo:latest
     env_file: 
       - ".env"
+    restart: always
     environment:
       MONGO_USERNAME: ${MONGO_USERNAME}
       MONGO_PASSWORD: ${MONGO_PASSWORD}

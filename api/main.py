@@ -6,8 +6,6 @@ from odmantic import AIOEngine
 import os
 
 
-load_dotenv('./.env')
-
 app = FastAPI()
 client = AsyncIOMotorClient(os.environ['MONGO_DB_URI'])
 engine = AIOEngine(client=client, database=os.environ['MONGO_DB'])
