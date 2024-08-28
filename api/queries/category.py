@@ -12,7 +12,7 @@ class CategoryQueries:
 	def collection(self):
 		return get_engine("category")
 
-	def create_category():
+	def create_category(self, category: Category):
 		pass
 
 

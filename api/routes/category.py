@@ -12,9 +12,11 @@ category_exception = HTTPException(status_code=404, detail="Can't be found!")
 
 @router.post("/categories")
 async def create_category(
+  category: Category,
   queries: CategoryQueries = Depends(),
 ):
-  pass
+  category_new = queries.create_category(category)
+  return category_new
 
 @router.get("/categories")
 async def get_all_categories(
