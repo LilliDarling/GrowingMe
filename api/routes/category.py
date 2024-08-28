@@ -1,7 +1,7 @@
 from odmantic import AIOEngine
 from fastapi import APIRouter, Depends, HTTPException
 from typing import List
-from models.category import Category
+from models.category import CategoryIn, CategoryOut
 from queries.category import CategoryQueries
 
 
@@ -10,12 +10,12 @@ router = APIRouter()
 category_exception = HTTPException(status_code=404, detail="Can't be found!")
 
 
-@router.post("/categories")
+@router.post("/categories/new", response_model=CategoryOut)
 async def create_category(
-  category: Category,
+  category: CategoryIn,
   queries: CategoryQueries = Depends(),
 ):
-  category_new = queries.create_category(category)
+  category_new = await queries.create_category(category=category)
   return category_new
 
 @router.get("/categories")

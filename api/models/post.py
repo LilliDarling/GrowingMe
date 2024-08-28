@@ -1,7 +1,7 @@
 from odmantic import Model, EmbeddedModel, Reference
 from typing import List
 from datetime import datetime
-from .category import Category
+from .category import CategoryIn
 
 
 class Resources(EmbeddedModel):
@@ -14,5 +14,5 @@ class Post(Model):
   author: str 
   image: str 
   resources: List[Resources]
-  category: Category = Reference()
+  category: CategoryIn = Reference()
 

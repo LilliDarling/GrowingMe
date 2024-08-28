@@ -1,19 +1,17 @@
-from psycopg.rows import class_row
 from fastapi import HTTPException
 from typing import List
-from models.category import Category
+from models.category import CategoryIn, CategoryOut
 from models.post import Post
-from main import get_engine
-
+from utils.database import engine
 
 class CategoryQueries:
 
-	@property
-	def collection(self):
-		return get_engine("category")
-
-	def create_category(self, category: Category):
-		self.collection.insert_one(category)
+	async def create_category(self, category: CategoryIn) -> CategoryOut:
+		await engine.save(category)
+		return CategoryOut(
+			name=category.name,
+			is_active=True
+		)
 
 
 	def get_category():
