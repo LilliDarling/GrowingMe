@@ -1,7 +1,7 @@
 from odmantic import AIOEngine
 from fastapi import APIRouter, Depends, HTTPException
 from typing import List
-from models.category import CategoryIn, CategoryOut
+from models.category import CategoryIn, CategoryOut, CategoryList
 from queries.category import CategoryQueries
 
 
@@ -18,11 +18,12 @@ async def create_category(
   category_new = await queries.create_category(category=category)
   return category_new
 
-@router.get("/categories")
+@router.get("/categories", response_model=CategoryList)
 async def get_all_categories(
   queries: CategoryQueries = Depends(),
 ):
-  pass
+  categories = await queries.get_all_categories()
+  return CategoryList(categories=categories)
 
 @router.get("/categories/{id}")
 async def get_category(
