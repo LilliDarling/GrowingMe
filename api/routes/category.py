@@ -3,11 +3,10 @@ from fastapi import APIRouter, Depends, HTTPException
 from typing import List
 from models.category import CategoryIn, CategoryOut, CategoryList
 from queries.category import CategoryQueries
+from utils.exceptions import category_exception
 
 
 router = APIRouter()
-
-category_exception = HTTPException(status_code=404, detail="Can't be found!")
 
 
 @router.post("/categories/new", response_model=CategoryOut)
@@ -25,16 +24,21 @@ async def get_all_categories(
   categories = await queries.get_all_categories()
   return CategoryList(categories=categories)
 
-@router.get("/categories/{id}")
+@router.get("/categories/{name}", response_model=CategoryOut)
 async def get_category(
-  category_id = str,
+  name = str,
   queries: CategoryQueries = Depends(),
 ):
-  pass
+  try:
+    category = await queries.get_category(name=name)
+    return category
+  
+  except:
+    raise category_exception
 
-@router.put("/categories/{id}")
+@router.put("/categories/{name}")
 async def update_category(
-  category_id = str,
+  name = str,
   queries: CategoryQueries = Depends(),
 ):
   pass
