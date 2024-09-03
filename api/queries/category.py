@@ -41,5 +41,13 @@ class CategoryQueries:
 		)
 
 
-	async def delete_category():
-		pass
+	async def delete_category(self, name: str) -> CategoryOut:
+		category = await engine.find_one(CategoryIn, CategoryIn.name == name)
+
+		if not category:
+			raise category_exception
+
+		await engine.delete(category)
+
+
+		return CategoryOut(name=category.name)
