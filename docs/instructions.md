@@ -11,7 +11,7 @@ for what you are looking for, please reach out to me!
   - Adding New Features
   - Creating Issues
   - Pull Requests
-- ....
+- Starting up the Project
   - ...
 - ...
 
@@ -24,3 +24,7 @@ any questions, want to discuss a feature, or might want to collaborate on a futu
 out to me. I am always down to create more magic!
 
 ### Adding New Features
+
+
+## Starting up the Project
+

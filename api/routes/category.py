@@ -1,7 +1,7 @@
 from odmantic import AIOEngine
 from fastapi import APIRouter, Depends, HTTPException
 from typing import List
-from models.category import CategoryIn, CategoryOut, CategoryList
+from models.category import CategoryIn, CategoryOut, CategoryList, CategoryPatchSchema
 from queries.category import CategoryQueries
 from utils.exceptions import category_exception
 
@@ -36,12 +36,18 @@ async def get_category(
   except:
     raise category_exception
 
-@router.put("/categories/{name}")
+@router.patch("/categories/{name}", response_model=CategoryOut)
 async def update_category(
+  patch: CategoryPatchSchema,
   name = str,
   queries: CategoryQueries = Depends(),
 ):
-  pass
+  category = await queries.update_category(patch=patch, name=name)
+
+  if not category:
+    raise category_exception
+  
+  return category
 
 @router.delete("/categories/{id}")
 async def delete_category(
