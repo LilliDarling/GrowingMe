@@ -15,7 +15,7 @@ class CategoryQueries:
 
 	async def get_all_categories(self) -> List[CategoryOut]:
 		categories = await engine.find(CategoryIn)
-		return [CategoryIn(name=category.name) for category in categories]
+		return [CategoryOut(name=category.name, is_active=category.is_active) for category in categories]
 
 	async def get_category(self, name: str) -> CategoryOut:
 		category = await engine.find_one(CategoryIn, CategoryIn.name == name)

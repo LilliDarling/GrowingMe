@@ -14,7 +14,7 @@ class CategoryOut(Model):
 
 
 class CategoryList(BaseModel):
-  categories: List[CategoryIn]
+  categories: List[CategoryOut]
 
 class CategoryPatchSchema(BaseModel):
   name: str = None

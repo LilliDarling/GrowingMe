@@ -18,10 +18,21 @@ Today I worked on:
 * Setup API skeleton for posts, chapters, & categories
 * Created documentation directory with new files and spent some time working on them
 
-Thoughts:
+Thoughts: Late response.
 
+Bugs: There is a weird bug that I am trying to figure out where if you update a category, it won't show 
+the update in the list view. 
 
-Bugs:
+Resources: None
 
+### 09/03/2024
 
-Resources:
+Today I worked on:
+
+* 
+
+Thoughts: 
+
+Bugs: 
+
+Resources: 
