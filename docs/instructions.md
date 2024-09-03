@@ -28,3 +28,5 @@ out to me. I am always down to create more magic!
 
 ## Starting up the Project
 
+This project is currently using a local database setup. I will have a document to be able to use a local
+database after deployment so that you are able to still set the project up locally as a template.

@@ -6,6 +6,8 @@
 # Security
 .env
 
+#Testing
+.pytest_cache
 
 # User-specific files
 *.rsuser

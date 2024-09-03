@@ -29,10 +29,13 @@ Resources: None
 
 Today I worked on:
 
-* 
+* Finishing up Category Queries and Routes
+* Created tests for all of category
 
-Thoughts: 
+Thoughts: I have a feeling that I am not finished with the Category section, however, for right now everything
+is functioning exactly as expected with tests all passing. It is getting easier to learn new technologies and how
+to get them to work the way I want them to.
 
-Bugs: 
+Bugs: No current bugs to report.
 
-Resources: 
+Resources: Utilized older projects and the ODMantic documentation.
