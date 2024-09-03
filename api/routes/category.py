@@ -49,9 +49,11 @@ async def update_category(
   
   return category
 
-@router.delete("/categories/{id}")
+@router.delete("/categories/{name}", status_code=204)
 async def delete_category(
-  category_id = str,
+  name = str,
   queries: CategoryQueries = Depends(),
 ):
-  pass
+  success = await queries.delete_category(name)
+  if not success:
+    raise HTTPException(status_code=404, detail="Category not found")
