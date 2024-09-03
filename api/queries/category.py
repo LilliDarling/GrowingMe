@@ -1,6 +1,5 @@
 from typing import List
 from models.category import CategoryIn, CategoryOut, CategoryPatchSchema
-from models.post import Post
 from utils.database import engine
 from utils.exceptions import category_exception
 

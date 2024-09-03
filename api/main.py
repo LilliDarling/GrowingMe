@@ -10,13 +10,13 @@ app.include_router(chapter.router, tags=["Chapter"])
 app.include_router(category.router, tags=["Category"])
 
 
-@app.on_event("startup")
-async def startup():
-	try:
-		await initialize_database()
-		print("database connected")
-	except Exception as e:
-		print(f"Unable to connect database: {e}")
-		import sys
-		sys.exit(1)
+# @app.on_event("startup")
+# async def startup():
+# 	try:
+# 		await initialize_database()
+# 		print("database connected")
+# 	except Exception as e:
+# 		print(f"Unable to connect database: {e}")
+# 		import sys
+# 		sys.exit(1)
 
