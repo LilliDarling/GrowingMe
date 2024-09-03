@@ -1,6 +1,4 @@
-from odmantic import AIOEngine
 from fastapi import APIRouter, Depends, HTTPException
-from typing import List
 from models.category import CategoryIn, CategoryOut, CategoryList, CategoryPatchSchema
 from queries.category import CategoryQueries
 from utils.exceptions import category_exception
@@ -9,7 +7,7 @@ from utils.exceptions import category_exception
 router = APIRouter()
 
 
-@router.post("/categories/new", response_model=CategoryOut)
+@router.post("/categories", response_model=CategoryOut)
 async def create_category(
   category: CategoryIn,
   queries: CategoryQueries = Depends(),
@@ -29,12 +27,12 @@ async def get_category(
   name = str,
   queries: CategoryQueries = Depends(),
 ):
-  try:
-    category = await queries.get_category(name=name)
-    return category
+  category = await queries.get_category(name=name)
   
-  except:
+  if not category:
     raise category_exception
+  
+  return category
 
 @router.patch("/categories/{name}", response_model=CategoryOut)
 async def update_category(
