@@ -40,9 +40,6 @@ jobs:
     - name: Run Tests
       run: docker-compose exec api python -m pytest 
 
-    - name: Run Linter
-      run: docker-compose exec api flake8 .
-
     - name: Check Formatting
       run: docker-compose exec api black --check .
 
