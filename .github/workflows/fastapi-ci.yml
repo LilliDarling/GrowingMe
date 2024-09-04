@@ -15,21 +15,32 @@ jobs:
 
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v2
+
+    - name: Create .env file
+      run: |
+        echo "MONGO_DB_URI=${{ secrets.MONGO_DB_URI }}" >> .env
+        echo "SIGNING_KEY=${{ secrets.SIGNING_KEY }}" >> .env
+        echo "MONGO_USERNAME=${{ secrets.MONGO_USERNAME }}" >> .env
+        echo "MONGO_PASSWORD=${{ secrets.MONGO_PASSWORD }}" >> .env
       
     - name: Build and Start Docker Containers
       run: | 
         docker-compose build
         docker-compose up -d
 
+    - name: Wait for services to be ready
+      run: |
+        docker compose exec api /bin/sh -c "wget --retry-connrefused --waitretry=1 --read-timeout=20 --timeout=15 --tries=60 http://mongo:27017"
+
     - name: Run Tests
-      run: docker-compose exec -T app pytest
+      run: docker-compose exec api pytest
 
     - name: Run Linter
-      run: docker-compose exec -T app flake8 .
+      run: docker-compose exec api flake8 .
 
     - name: Check Formatting
-      run: docker-compose exec -T app black --check .
+      run: docker-compose exec api black --check .
 
     - name: Stop containers
       if: always()
-      run: docker-compose down
+      run: docker-compose down -v
