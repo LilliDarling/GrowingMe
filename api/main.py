@@ -1,6 +1,5 @@
 from routes import post, chapter, category
 from fastapi import FastAPI
-from utils.database import initialize_database
 
 
 app = FastAPI()
@@ -19,4 +18,3 @@ app.include_router(category.router, tags=["Category"])
 # 		print(f"Unable to connect database: {e}")
 # 		import sys
 # 		sys.exit(1)
-
