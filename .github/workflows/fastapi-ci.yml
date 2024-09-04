@@ -38,7 +38,7 @@ jobs:
         docker compose exec api /bin/sh -c "wget --retry-connrefused --waitretry=1 --read-timeout=20 --timeout=15 --tries=60 http://mongo:27017"
 
     - name: Run Tests
-      run: docker-compose exec api pytest
+      run: docker-compose exec api python -m pytest 
 
     - name: Run Linter
       run: docker-compose exec api flake8 .
