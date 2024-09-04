@@ -39,3 +39,18 @@ to get them to work the way I want them to.
 Bugs: No current bugs to report.
 
 Resources: Utilized older projects and the ODMantic documentation.
+
+### 09/04/2024
+
+Today I worked on:
+
+* Creating a CI file for GitHub workflows
+
+Thoughts: I dug into figuring out how to make a CI file specifically for what I am doing. I understood the GitLab
+version so was a bit lost at first but after using AI and other GitHub examples, I was able to successfully make a 
+CI file that has passing tests for what I have currently done. I just need to make sure I format with black before 
+merging into main.
+
+Bugs: No current bugs to report.
+
+Resources: GitHub workflows, Claud, professors
