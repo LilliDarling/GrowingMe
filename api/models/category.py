@@ -4,19 +4,19 @@ from typing import List
 
 
 class CategoryIn(Model):
-  name: str = Field(unique=True)
-  is_active: bool = True
+    name: str = Field(unique=True)
+    is_active: bool = True
 
 
 class CategoryOut(Model):
-  name: str 
-  is_active: bool = True
+    name: str
+    is_active: bool = True
 
 
 class CategoryList(BaseModel):
-  categories: List[CategoryOut]
+    categories: List[CategoryOut]
+
 
 class CategoryPatchSchema(BaseModel):
-  name: str = None
-  is_active: bool = None
-
+    name: str = None
+    is_active: bool = None

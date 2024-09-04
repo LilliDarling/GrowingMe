@@ -4,7 +4,7 @@ from .post import Post
 
 
 class Chapter(Model):
-  title: str
-  image: Optional[str] = None 
-  quote: Optional[str] = None 
-  post: Post = Reference()
+    title: str
+    image: Optional[str] = None
+    quote: Optional[str] = None
+    post: Post = Reference()
