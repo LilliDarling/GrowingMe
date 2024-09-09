@@ -1,0 +1,48 @@
+name: FastAPI CI
+
+on: 
+  push: 
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2
+
+    - name: Create .env file
+      run: |
+        echo "MONGO_DB_URI=${{ secrets.MONGO_DB_URI }}" >> .env
+        echo "SIGNING_KEY=${{ secrets.SIGNING_KEY }}" >> .env
+        echo "MONGO_USERNAME=${{ secrets.MONGO_USERNAME }}" >> .env
+        echo "MONGO_PASSWORD=${{ secrets.MONGO_PASSWORD }}" >> .env
+
+    - name: Install Docker Compose
+      run: |
+        sudo curl -L "https://github.com/docker/compose/releases/download/v2.16.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+        sudo chmod +x /usr/local/bin/docker-compose
+      
+    - name: Build and Start Docker Containers
+      run: | 
+        docker-compose build
+        docker-compose up -d
+
+    - name: Wait for services to be ready
+      run: |
+        docker compose exec api /bin/sh -c "wget --retry-connrefused --waitretry=1 --read-timeout=20 --timeout=15 --tries=60 http://mongo:27017"
+
+    - name: Run Tests
+      run: docker-compose exec api python -m pytest 
+
+    - name: Check Formatting
+      run: docker-compose exec api black --check .
+
+    - name: Stop containers
+      if: always()
+      run: docker-compose down -v

@@ -5,14 +5,13 @@ from .category import CategoryIn
 
 
 class Resources(EmbeddedModel):
-  resource: str 
+    resource: str
 
 
 class Post(Model):
-  title: str
-  date: datetime
-  author: str 
-  image: str 
-  resources: List[Resources]
-  category: CategoryIn = Reference()
-
+    title: str
+    date: datetime
+    author: str
+    image: str
+    resources: List[Resources]
+    category: CategoryIn = Reference()
