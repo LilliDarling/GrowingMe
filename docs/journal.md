@@ -54,3 +54,17 @@ merging into main.
 Bugs: No current bugs to report.
 
 Resources: GitHub workflows, Claud, professors
+
+### 09/09/2024
+
+Today I worked on:
+
+* Implemented Error Handling
+* Adjusted the queries and routes for categories
+
+Thoughts: I realized I needed to add in some better error handling into my code so adjusted a few things and then also 
+added in some more testing that I had spaced on. 
+
+Bugs: No current bugs to report.
+
+Resources: 
