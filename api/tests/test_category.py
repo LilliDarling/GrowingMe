@@ -1,5 +1,5 @@
 from queries.category import CategoryQueries
-from models.category import CategoryIn, CategoryOut
+from models.category import CategoryIn, CategoryOut, CategoryPatchSchema
 from fastapi.testclient import TestClient
 from main import app
 import pytest
@@ -25,6 +25,11 @@ class FakeCategoryQueries:
         if name.lower() == "tests":
             return True
         return False
+    
+    async def update_category(self, patch: CategoryPatchSchema, name: str):
+        if name.lower() == "tests":
+            return CategoryOut(name=name, is_active=patch.is_active)
+        return None
 
 
 @pytest.mark.asyncio
@@ -84,5 +89,24 @@ async def test_delete_category_204():
 async def test_delete_category_404():
     app.dependency_overrides[CategoryQueries] = FakeCategoryQueries
     res = client.delete("/categories/NotFound")
+    assert res.status_code == 404
+    app.dependency_overrides = {}
+
+@pytest.mark.asyncio
+async def test_update_category_200():
+    app.dependency_overrides[CategoryQueries] = FakeCategoryQueries
+    patch_data = {"is_active": False}
+    res = client.patch("/categories/Tests", json=patch_data)
+    assert res.status_code == 200
+    data = res.json()
+    assert data["name"] == "Tests"
+    assert data["is_active"] is False
+    app.dependency_overrides = {}
+
+@pytest.mark.asyncio
+async def test_update_category_404():
+    app.dependency_overrides[CategoryQueries] = FakeCategoryQueries
+    patch_data = {"is_active": False}
+    res = client.patch("/categories/NotFound", json=patch_data)
     assert res.status_code == 404
     app.dependency_overrides = {}
