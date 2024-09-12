@@ -16,7 +16,7 @@ services:
       - ./env/mongo.env
     restart: always
     volumes:
-      - growing_me:/data/db
+      - data:/data/db
     ports:
       - "27017:27017"
 
@@ -33,5 +33,5 @@ services:
       - mongo
 
 volumes:
-  growing_me:
+  data:
   
