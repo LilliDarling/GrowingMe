@@ -21,7 +21,7 @@ class PostIn(Model):
     image: str
     chapters: List[Chapter]
     resources: List[Resource] = []
-    category: CategoryIn = Reference()
+    category: str
 
 class PostOut(Model):
     title: str 
