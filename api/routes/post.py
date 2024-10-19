@@ -6,9 +6,13 @@ from utils.exceptions import handle_not_found_error, handle_pymongo_error
 
 router = APIRouter()
 
-@router.post("/posts")
-async def create_post():
-    pass
+@router.post("/posts", response_model=PostOut)
+async def create_post(
+    post: PostIn,
+    queries: PostQueries = Depends()
+):
+    post_new = await queries.create_post(post=post)
+    return post_new
 
 
 @router.get("/posts")
