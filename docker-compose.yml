@@ -3,20 +3,20 @@ services:
     env_file: 
       - ./env/api.env
     build: ./api
-    environment:
-      WAIT_HOSTS: mongo:27017
     ports:
       - "8000:8000"
+    depends_on:
+      - mongodb
     volumes:
       - ./api:/app
 
-  mongo:
+  mongodb:
     image: mongo
     env_file: 
       - ./env/mongo.env
     restart: always
     volumes:
-      - data:/data/db
+      - growing_me:/data/db
     ports:
       - "27017:27017"
 
@@ -28,10 +28,10 @@ services:
     ports:
       - 8081:8081
     environment:
-      WAIT_HOSTS: mongo:27017
+      WAIT_HOSTS: mongodb:27017
     depends_on:
-      - mongo
+      - mongodb
 
 volumes:
-  data:
+  growing_me:
   
