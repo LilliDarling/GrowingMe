@@ -68,3 +68,24 @@ added in some more testing that I had spaced on.
 Bugs: No current bugs to report.
 
 Resources: 
+
+### 10/19/2024
+
+Today I worked on:
+
+* Fixed Docker Compose and env files
+* Created models for posts
+* Created create methods for posts
+
+Thoughts: It's been a minute since I worked on this repo with applying to jobs, building a portfolio, and a side 
+quest with learning Solidity. I have also been working on the AWS Cloud Practitioner certification so my time has 
+been a bit more limited. I created the models for posts and decided to go ahead and embed the chapters into the posts 
+instead of having them as a reference. I did this because the chapters won't be used except with one post and if I need 
+to update anything in a post, I would rather do it in one document instead of having to try and find the chapter if it 
+might share a name with another chapter. This also will make it easier for when it comes to the front end for displaying 
+the posts. The only thing I need to adjust with creation is making sure the post doesn't create if the category is 
+incorrect. Currently, it is creating the post with the fake category but still giving a 500 error.
+
+Bugs: 500 internal server error when creating a post with a unknown category. Still creates the post which I don't want.
+
+Resources: Current code.

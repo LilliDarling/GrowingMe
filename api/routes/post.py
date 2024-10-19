@@ -1,14 +1,18 @@
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Depends
+from models.post import PostIn, PostOut, PostList, PostPatchSchema
+from queries.post import PostQueries
+from utils.exceptions import handle_not_found_error, handle_pymongo_error
 
 
 router = APIRouter()
 
-post_exception = HTTPException(status_code=404, detail="Can't be found!")
-
-
-@router.post("/posts")
-async def create_post():
-    pass
+@router.post("/posts", response_model=PostOut)
+async def create_post(
+    post: PostIn,
+    queries: PostQueries = Depends()
+):
+    post_new = await queries.create_post(post=post)
+    return post_new
 
 
 @router.get("/posts")
