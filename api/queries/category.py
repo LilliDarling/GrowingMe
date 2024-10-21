@@ -1,5 +1,6 @@
 from typing import List
 from models.category import CategoryIn, CategoryOut, CategoryPatchSchema
+from models.post import PostIn
 from utils.database import engine
 from utils.exceptions import handle_not_found_error, handle_pymongo_error
 

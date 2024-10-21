@@ -17,9 +17,12 @@ async def create_post(
     return post_new
 
 
-@router.get("/posts")
-async def get_all_posts():
-    pass
+@router.get("/posts", response_model=PostList)
+async def get_all_posts(
+    queries: PostQueries = Depends()
+):
+    posts = await queries.get_all_posts()
+    return PostList(posts=posts)
 
 
 @router.get("/posts/{_id}")
