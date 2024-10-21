@@ -59,6 +59,18 @@ class PostQueries:
     def get_posts_by_category():
         pass
 
+    async def get_post(self, title: str) -> PostIn:
+        try:
+            post = await engine.find_one(PostIn, PostIn.title == title)
+
+            if not post:
+                handle_pymongo_error("Post not found")
+            
+            return post
+        
+        except Exception as e:
+            handle_pymongo_error(e)
+
     def update_post():
         pass
 
