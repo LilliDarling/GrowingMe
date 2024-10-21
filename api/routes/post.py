@@ -12,6 +12,8 @@ async def create_post(
     queries: PostQueries = Depends()
 ):
     post_new = await queries.create_post(post=post)
+    if post_new is None:
+        raise HTTPException(status_code=400, detail="post not created. category may not exist.")
     return post_new
 
 
