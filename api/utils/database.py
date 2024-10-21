@@ -1,6 +1,7 @@
 from motor.motor_asyncio import AsyncIOMotorClient
 from odmantic import AIOEngine
 from models.category import CategoryOut
+from models.post import PostOut
 import os
 
 
@@ -12,5 +13,6 @@ async def initialize_database():
     await engine.configure_database(
         [
             CategoryOut,
+            PostOut
         ]
     )

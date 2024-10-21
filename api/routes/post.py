@@ -12,12 +12,17 @@ async def create_post(
     queries: PostQueries = Depends()
 ):
     post_new = await queries.create_post(post=post)
+    if post_new is None:
+        raise HTTPException(status_code=400, detail="post not created. category may not exist.")
     return post_new
 
 
-@router.get("/posts")
-async def get_all_posts():
-    pass
+@router.get("/posts", response_model=PostList)
+async def get_all_posts(
+    queries: PostQueries = Depends()
+):
+    posts = await queries.get_all_posts()
+    return PostList(posts=posts)
 
 
 @router.get("/posts/{_id}")

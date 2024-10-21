@@ -55,3 +55,4 @@ async def delete_category(
     success = await queries.delete_category(name)
     if not success:
         raise HTTPException(status_code=404, detail="Category not found")
+    return success
