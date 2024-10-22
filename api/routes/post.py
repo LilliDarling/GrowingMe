@@ -25,11 +25,6 @@ async def get_all_posts(
     return PostList(posts=posts)
 
 
-@router.get("/posts/categories/{name}")
-async def get_posts_by_category():
-    pass
-
-
 @router.get("/posts/{title}", response_model=PostIn)
 async def get_post(
     title=str,

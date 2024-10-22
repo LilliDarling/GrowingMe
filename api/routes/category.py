@@ -1,6 +1,8 @@
 from fastapi import APIRouter, Depends, HTTPException
 from models.category import CategoryIn, CategoryOut, CategoryList, CategoryPatchSchema
 from queries.category import CategoryQueries
+from models.post import PostList
+from queries.post import PostQueries
 from utils.exceptions import handle_not_found_error, handle_pymongo_error
 
 
@@ -33,6 +35,17 @@ async def get_category(
     if not category:
         raise HTTPException(status_code=404, detail="Category not found")
     return category
+
+
+@router.get("/categories/{name}/posts", response_model=PostList)
+async def get_posts_by_category(
+    name=str,
+    queries: PostQueries = Depends()
+):
+    posts = await queries.get_posts_by_category(name=name)
+    if not posts:
+        raise HTTPException(status_code=400, detail="Posts not found.")
+    return PostList(posts=posts)
 
 
 @router.patch("/categories/{name}", response_model=CategoryOut)
