@@ -55,12 +55,14 @@ class PostQueries:
         
         except Exception as e:
             await handle_pymongo_error(e)
+            return None
 
     async def get_posts_by_category(self, name: str) -> List[PostOut]:
         try:
             category = await engine.find_one(CategoryIn, CategoryIn.name == name)
             if not category:
                 await handle_not_found_error("Category not found.")
+                return None
 
             posts = await engine.find(PostIn, PostIn.category == name)
             posts_by_cat = []
@@ -80,18 +82,21 @@ class PostQueries:
         
         except Exception as e:
             await handle_pymongo_error(e)
+            return None
 
     async def get_post(self, title: str) -> PostIn:
         try:
             post = await engine.find_one(PostIn, PostIn.title == title)
 
             if not post:
-                handle_pymongo_error("Post not found")
+                await handle_pymongo_error("Post not found")
+                return None
             
             return post
         
         except Exception as e:
-            handle_pymongo_error(e)
+            await handle_pymongo_error(e)
+            return None
 
     async def update_post(self, patch: PostPatchSchema, title: str) -> PostOut:
         try:
@@ -127,8 +132,32 @@ class PostQueries:
                 category=category
             )
         except Exception as e:
-            handle_pymongo_error(e)
+            await handle_pymongo_error(e)
             return None
 
-    def delete_post():
-        pass
+    async def delete_post(self, title: str) -> PostOut:
+        try:
+            post = await engine.find_one(PostIn, PostIn.title == title)
+            if not post:
+                await handle_not_found_error("Post not found.")
+                return None
+            
+            category = await engine.find_one(CategoryIn, CategoryIn.name == post.category)
+            if not category:
+                await handle_not_found_error("Category not found.")
+                return None
+            
+            await engine.delete(post)
+            return PostOut(
+                title=post.title,
+                author=post.author,
+                date=post.date,
+                image=post.image,
+                chapters=post.chapters,
+                resources=post.resources,
+                category=category
+            )
+        
+        except Exception as e:
+            await handle_pymongo_error(e)
+            return None

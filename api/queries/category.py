@@ -12,7 +12,8 @@ class CategoryQueries:
             await engine.save(category)
             return CategoryOut(name=category.name, is_active=True)
         except Exception as e:
-            handle_pymongo_error(e)
+            await handle_pymongo_error(e)
+            return None
 
     async def get_all_categories(self) -> List[CategoryOut]:
         try:
@@ -22,18 +23,21 @@ class CategoryQueries:
                 for category in categories
             ]
         except Exception as e:
-            handle_pymongo_error(e)
+            await handle_pymongo_error(e)
+            return None
 
     async def get_category(self, name: str) -> CategoryOut:
         try:
             category = await engine.find_one(CategoryIn, CategoryIn.name == name)
 
             if not category:
-                handle_not_found_error("Category not found")
+                await handle_not_found_error("Category not found")
+                return None
 
             return category
         except Exception as e:
-            handle_pymongo_error(e)
+            await handle_pymongo_error(e)
+            return None
 
     async def update_category(
         self, patch: CategoryPatchSchema, name: str
@@ -42,22 +46,26 @@ class CategoryQueries:
             category = await engine.find_one(CategoryIn, CategoryIn.name == name)
 
             if not category:
-                handle_not_found_error("Category not found")
+                await handle_not_found_error("Category not found")
+                return None
 
             category.model_update(patch)
             await engine.save(category)
             return CategoryOut(name=category.name, is_active=category.is_active)
         except Exception as e:
-            handle_pymongo_error(e)
+            await handle_pymongo_error(e)
+            return None
 
     async def delete_category(self, name: str) -> CategoryOut:
         try:
             category = await engine.find_one(CategoryIn, CategoryIn.name == name)
 
             if not category:
-                handle_not_found_error("Category not found")
+                await handle_not_found_error("Category not found")
+                return None
 
             await engine.delete(category)
             return CategoryOut(name=category.name)
         except Exception as e:
-            handle_pymongo_error(e)
+            await handle_pymongo_error(e)
+            return None
