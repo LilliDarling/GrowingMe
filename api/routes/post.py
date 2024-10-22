@@ -48,6 +48,12 @@ async def update_post(
     return post
 
 
-@router.delete("/posts/{title}")
-async def delete_post():
-    pass
+@router.delete("/posts/{title}", status_code=204)
+async def delete_post(
+    title: str,
+    queries: PostQueries = Depends()
+):
+    success = await queries.delete_post(title)
+    if not success:
+        raise HTTPException(status_code=404, detail="Post not found.")
+    return success
