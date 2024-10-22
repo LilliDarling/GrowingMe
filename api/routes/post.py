@@ -25,16 +25,22 @@ async def get_all_posts(
     return PostList(posts=posts)
 
 
-@router.get("/posts/{_id}")
-async def get_post():
-    pass
+@router.get("/posts/{title}", response_model=PostIn)
+async def get_post(
+    title=str,
+    queries: PostQueries = Depends()
+):
+    post = await queries.get_post(title=title)
+    if not post:
+        raise HTTPException(status_code=404, detail="Post not found")
+    return post
 
 
-@router.put("/posts/{_id}")
+@router.put("/posts/{title}")
 async def update_post():
     pass
 
 
-@router.delete("/posts/{_id}")
+@router.delete("/posts/{title}")
 async def delete_post():
     pass

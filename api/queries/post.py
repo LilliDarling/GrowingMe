@@ -56,8 +56,42 @@ class PostQueries:
         except Exception as e:
             await handle_pymongo_error(e)
 
-    def get_posts_by_category():
-        pass
+    async def get_posts_by_category(self, name: str) -> List[PostOut]:
+        try:
+            category = await engine.find_one(CategoryIn, CategoryIn.name == name)
+            if not category:
+                await handle_not_found_error("Category not found.")
+
+            posts = await engine.find(PostIn, PostIn.category == name)
+            posts_by_cat = []
+
+            for post in posts:
+                post_out = PostOut(
+                    title=post.title,
+                    author=post.author,
+                    date=post.date,
+                    image=post.image,
+                    chapters=post.chapters,
+                    resources=post.resources,
+                    category=category
+                )
+                posts_by_cat.append(post_out)     
+            return posts_by_cat
+        
+        except Exception as e:
+            await handle_pymongo_error(e)
+
+    async def get_post(self, title: str) -> PostIn:
+        try:
+            post = await engine.find_one(PostIn, PostIn.title == title)
+
+            if not post:
+                handle_pymongo_error("Post not found")
+            
+            return post
+        
+        except Exception as e:
+            handle_pymongo_error(e)
 
     def update_post():
         pass
