@@ -36,9 +36,16 @@ async def get_post(
     return post
 
 
-@router.put("/posts/{title}")
-async def update_post():
-    pass
+@router.put("/posts/{title}", response_model=PostOut)
+async def update_post(
+    patch: PostPatchSchema,
+    title: str,
+    queries: PostQueries = Depends()
+):
+    post = await queries.update_post(patch=patch, title=title)
+    if not post:
+        raise HTTPException(status_code=404, detail="Post not found.")
+    return post
 
 
 @router.delete("/posts/{title}")

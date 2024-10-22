@@ -93,8 +93,42 @@ class PostQueries:
         except Exception as e:
             handle_pymongo_error(e)
 
-    def update_post():
-        pass
+    async def update_post(self, patch: PostPatchSchema, title: str) -> PostOut:
+        try:
+            post = await engine.find_one(PostIn, PostIn.title == title)
+            if not post:
+                handle_not_found_error("Post not found.")
+                return None
+
+            if patch.category:
+                category = await engine.find_one(CategoryIn, CategoryIn.name == patch.category)
+                if not category:
+                    await handle_not_found_error("Category not found.")
+                    return None
+            
+            else:
+                category = await engine.find_one(CategoryIn, CategoryIn.name == post.category)
+                if not category:
+                    await handle_not_found_error("Category not found.")
+                    return None
+            
+            for field, value in patch.dict(exclude_unset=True).items():
+                setattr(post, field, value)
+            
+            await engine.save(post)
+
+            return PostOut(
+                title=post.title,
+                author=post.author,
+                date=post.date,
+                image=post.image,
+                chapters=post.chapters,
+                resources=post.resources,
+                category=category
+            )
+        except Exception as e:
+            handle_pymongo_error(e)
+            return None
 
     def delete_post():
         pass
