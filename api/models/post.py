@@ -11,8 +11,10 @@ class Chapter(EmbeddedModel):
     quote: Optional[str] = None
     paragraphs: List[str] = []
 
+
 class Resource(EmbeddedModel):
     resource: str
+
 
 class PostIn(Model):
     title: str = Field(unique=True)
@@ -23,8 +25,9 @@ class PostIn(Model):
     resources: List[Resource] = []
     category: str
 
+
 class PostOut(Model):
-    title: str 
+    title: str
     date: datetime
     author: str
     image: str
@@ -32,8 +35,10 @@ class PostOut(Model):
     resources: List[Resource] = []
     category: CategoryIn = Reference()
 
+
 class PostList(BaseModel):
     posts: List[PostOut]
+
 
 class PostPatchSchema(BaseModel):
     title: Optional[str] = None

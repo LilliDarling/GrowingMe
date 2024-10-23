@@ -7,12 +7,15 @@ class CategoryIn(Model):
     name: str = Field(unique=True)
     is_active: bool = True
 
+
 class CategoryOut(Model):
     name: str
     is_active: bool = True
 
+
 class CategoryList(BaseModel):
     categories: List[CategoryOut]
+
 
 class CategoryPatchSchema(BaseModel):
     name: Optional[str] = None

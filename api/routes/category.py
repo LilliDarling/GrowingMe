@@ -1,9 +1,9 @@
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends
 from models.category import CategoryIn, CategoryOut, CategoryList, CategoryPatchSchema
 from queries.category import CategoryQueries
 from models.post import PostList
 from queries.post import PostQueries
-from utils.exceptions import handle_not_found_error, handle_pymongo_error
+from utils.exceptions import handle_not_found_error
 
 
 router = APIRouter()
@@ -33,18 +33,15 @@ async def get_category(
 ):
     category = await queries.get_category(name=name)
     if not category:
-        raise HTTPException(status_code=404, detail="Category not found")
+        await handle_not_found_error("Category not found.")
     return category
 
 
 @router.get("/categories/{name}/posts", response_model=PostList)
-async def get_posts_by_category(
-    name=str,
-    queries: PostQueries = Depends()
-):
+async def get_posts_by_category(name=str, queries: PostQueries = Depends()):
     posts = await queries.get_posts_by_category(name=name)
     if not posts:
-        raise HTTPException(status_code=400, detail="Posts not found.")
+        await handle_not_found_error("Posts not found.")
     return PostList(posts=posts)
 
 
@@ -56,7 +53,7 @@ async def update_category(
 ):
     category = await queries.update_category(patch=patch, name=name)
     if not category:
-        raise HTTPException(status_code=404, detail="Category not found")
+        await handle_not_found_error("Category not found.")
     return category
 
 
@@ -67,5 +64,5 @@ async def delete_category(
 ):
     success = await queries.delete_category(name)
     if not success:
-        raise HTTPException(status_code=404, detail="Category not found")
+        await handle_not_found_error("Category not found.")
     return success

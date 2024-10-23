@@ -10,9 +10,4 @@ engine = AIOEngine(client=client, database="growing_me")
 
 
 async def initialize_database():
-    await engine.configure_database(
-        [
-            CategoryOut,
-            PostOut
-        ]
-    )
+    await engine.configure_database([CategoryOut, PostOut])

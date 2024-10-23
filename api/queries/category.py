@@ -1,6 +1,5 @@
 from typing import List
 from models.category import CategoryIn, CategoryOut, CategoryPatchSchema
-from models.post import PostIn
 from utils.database import engine
 from utils.exceptions import handle_not_found_error, handle_pymongo_error
 
@@ -31,7 +30,7 @@ class CategoryQueries:
             category = await engine.find_one(CategoryIn, CategoryIn.name == name)
 
             if not category:
-                await handle_not_found_error("Category not found")
+                await handle_not_found_error("Category not found.")
                 return None
 
             return category
@@ -46,7 +45,7 @@ class CategoryQueries:
             category = await engine.find_one(CategoryIn, CategoryIn.name == name)
 
             if not category:
-                await handle_not_found_error("Category not found")
+                await handle_not_found_error("Category not found.")
                 return None
 
             category.model_update(patch)
@@ -61,7 +60,7 @@ class CategoryQueries:
             category = await engine.find_one(CategoryIn, CategoryIn.name == name)
 
             if not category:
-                await handle_not_found_error("Category not found")
+                await handle_not_found_error("Category not found.")
                 return None
 
             await engine.delete(category)
