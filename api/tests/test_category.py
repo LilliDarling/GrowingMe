@@ -25,7 +25,7 @@ class FakeCategoryQueries:
         if name.lower() == "tests":
             return True
         return False
-    
+
     async def update_category(self, patch: CategoryPatchSchema, name: str):
         if name.lower() == "tests":
             return CategoryOut(name=name, is_active=patch.is_active)
@@ -92,6 +92,7 @@ async def test_delete_category_404():
     assert res.status_code == 404
     app.dependency_overrides = {}
 
+
 @pytest.mark.asyncio
 async def test_update_category_200():
     app.dependency_overrides[CategoryQueries] = FakeCategoryQueries
@@ -102,6 +103,7 @@ async def test_update_category_200():
     assert data["name"] == "Tests"
     assert data["is_active"] is False
     app.dependency_overrides = {}
+
 
 @pytest.mark.asyncio
 async def test_update_category_404():

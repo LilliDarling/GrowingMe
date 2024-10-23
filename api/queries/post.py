@@ -4,15 +4,18 @@ from models.category import CategoryIn
 from utils.database import engine
 from utils.exceptions import handle_not_found_error, handle_pymongo_error
 
+
 class PostQueries:
 
     async def create_post(self, post: PostIn) -> PostOut:
         try:
-            category = await engine.find_one(CategoryIn, CategoryIn.name == post.category)
+            category = await engine.find_one(
+                CategoryIn, CategoryIn.name == post.category
+            )
         except Exception as e:
             await handle_not_found_error(e)
             return None
-        
+
         if category:
             try:
                 await engine.save(post)
@@ -24,7 +27,7 @@ class PostQueries:
                     image=post.image,
                     chapters=post.chapters,
                     resources=post.resources,
-                    category=category
+                    category=category,
                 )
             except Exception as e:
                 await handle_pymongo_error(e)
@@ -36,7 +39,9 @@ class PostQueries:
             posts_list = []
 
             for post in posts:
-                category = await engine.find_one(CategoryIn, CategoryIn.name == post.category)
+                category = await engine.find_one(
+                    CategoryIn, CategoryIn.name == post.category
+                )
 
                 if not category:
                     continue
@@ -48,11 +53,11 @@ class PostQueries:
                     image=post.image,
                     chapters=post.chapters,
                     resources=post.resources,
-                    category=category
+                    category=category,
                 )
                 posts_list.append(post_out)
             return posts_list
-        
+
         except Exception as e:
             await handle_pymongo_error(e)
             return None
@@ -75,11 +80,11 @@ class PostQueries:
                     image=post.image,
                     chapters=post.chapters,
                     resources=post.resources,
-                    category=category
+                    category=category,
                 )
-                posts_by_cat.append(post_out)     
+                posts_by_cat.append(post_out)
             return posts_by_cat
-        
+
         except Exception as e:
             await handle_pymongo_error(e)
             return None
@@ -91,9 +96,9 @@ class PostQueries:
             if not post:
                 await handle_pymongo_error("Post not found.")
                 return None
-            
+
             return post
-        
+
         except Exception as e:
             await handle_pymongo_error(e)
             return None
@@ -106,20 +111,24 @@ class PostQueries:
                 return None
 
             if patch.category:
-                category = await engine.find_one(CategoryIn, CategoryIn.name == patch.category)
+                category = await engine.find_one(
+                    CategoryIn, CategoryIn.name == patch.category
+                )
                 if not category:
                     await handle_not_found_error("Category not found.")
                     return None
-            
+
             else:
-                category = await engine.find_one(CategoryIn, CategoryIn.name == post.category)
+                category = await engine.find_one(
+                    CategoryIn, CategoryIn.name == post.category
+                )
                 if not category:
                     await handle_not_found_error("Category not found.")
                     return None
-            
+
             for field, value in patch.dict(exclude_unset=True).items():
                 setattr(post, field, value)
-            
+
             await engine.save(post)
 
             return PostOut(
@@ -129,7 +138,7 @@ class PostQueries:
                 image=post.image,
                 chapters=post.chapters,
                 resources=post.resources,
-                category=category
+                category=category,
             )
         except Exception as e:
             await handle_pymongo_error(e)
@@ -141,12 +150,14 @@ class PostQueries:
             if not post:
                 await handle_not_found_error("Post not found.")
                 return None
-            
-            category = await engine.find_one(CategoryIn, CategoryIn.name == post.category)
+
+            category = await engine.find_one(
+                CategoryIn, CategoryIn.name == post.category
+            )
             if not category:
                 await handle_not_found_error("Category not found.")
                 return None
-            
+
             await engine.delete(post)
             return PostOut(
                 title=post.title,
@@ -155,9 +166,9 @@ class PostQueries:
                 image=post.image,
                 chapters=post.chapters,
                 resources=post.resources,
-                category=category
+                category=category,
             )
-        
+
         except Exception as e:
             await handle_pymongo_error(e)
             return None

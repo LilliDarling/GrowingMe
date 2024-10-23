@@ -38,10 +38,7 @@ async def get_category(
 
 
 @router.get("/categories/{name}/posts", response_model=PostList)
-async def get_posts_by_category(
-    name=str,
-    queries: PostQueries = Depends()
-):
+async def get_posts_by_category(name=str, queries: PostQueries = Depends()):
     posts = await queries.get_posts_by_category(name=name)
     if not posts:
         await handle_not_found_error("Posts not found.")
