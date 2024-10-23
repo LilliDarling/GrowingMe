@@ -1,5 +1,5 @@
 from typing import List
-from models.post import PostIn, PostOut, PostPatchSchema, Chapter, Resource
+from models.post import PostIn, PostOut, PostPatchSchema
 from models.category import CategoryIn
 from utils.database import engine
 from utils.exceptions import handle_not_found_error, handle_pymongo_error
@@ -89,7 +89,7 @@ class PostQueries:
             post = await engine.find_one(PostIn, PostIn.title == title)
 
             if not post:
-                await handle_pymongo_error("Post not found")
+                await handle_pymongo_error("Post not found.")
                 return None
             
             return post
@@ -102,7 +102,7 @@ class PostQueries:
         try:
             post = await engine.find_one(PostIn, PostIn.title == title)
             if not post:
-                handle_not_found_error("Post not found.")
+                await handle_not_found_error("Post not found.")
                 return None
 
             if patch.category:

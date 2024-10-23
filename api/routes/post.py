@@ -1,7 +1,7 @@
 from fastapi import APIRouter, HTTPException, Depends
 from models.post import PostIn, PostOut, PostList, PostPatchSchema
 from queries.post import PostQueries
-from utils.exceptions import handle_not_found_error, handle_pymongo_error
+from utils.exceptions import handle_not_found_error
 
 
 router = APIRouter()
@@ -13,7 +13,7 @@ async def create_post(
 ):
     post_new = await queries.create_post(post=post)
     if post_new is None:
-        raise HTTPException(status_code=400, detail="post not created. category may not exist.")
+        raise HTTPException(status_code=400, detail="Post not created. Category may not exist.")
     return post_new
 
 
@@ -32,7 +32,7 @@ async def get_post(
 ):
     post = await queries.get_post(title=title)
     if not post:
-        raise HTTPException(status_code=404, detail="Post not found")
+        await handle_not_found_error("Post not found.")
     return post
 
 
@@ -44,7 +44,7 @@ async def update_post(
 ):
     post = await queries.update_post(patch=patch, title=title)
     if not post:
-        raise HTTPException(status_code=404, detail="Post not found.")
+        await handle_not_found_error("Post not found.")
     return post
 
 
@@ -55,5 +55,5 @@ async def delete_post(
 ):
     success = await queries.delete_post(title)
     if not success:
-        raise HTTPException(status_code=404, detail="Post not found.")
+        await handle_not_found_error("Post not found.")
     return success
