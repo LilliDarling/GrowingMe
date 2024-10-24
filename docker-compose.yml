@@ -1,4 +1,6 @@
 services:
+  expo:
+  
   api:
     env_file: 
       - ./env/api.env
