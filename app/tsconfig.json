@@ -18,10 +18,6 @@
     "composite": true,
     "types": ["react-native"]
   },
-  "include": [
-    "src/**/*",
-    "src/**/*.tsx",
-    "src/**/*.ts"
-  ],
+  "include": ["src/**/*", "src/**/*.tsx", "src/**/*.ts"],
   "references": []
 }

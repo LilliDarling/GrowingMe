@@ -1,5 +1,5 @@
-import { StyleSheet } from 'react-native';
-import type { ViewStyle, TextStyle } from 'react-native';
+import { StyleSheet } from "react-native";
+import type { ViewStyle, TextStyle } from "react-native";
 
 interface Styles {
   container: ViewStyle;
@@ -11,23 +11,23 @@ interface Styles {
 export const styles = StyleSheet.create<Styles>({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
   },
   text: {
     fontSize: 24,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     marginBottom: 20,
   },
   button: {
-    backgroundColor: '#007AFF',
+    backgroundColor: "#007AFF",
     paddingHorizontal: 20,
     paddingVertical: 10,
     borderRadius: 8,
   },
   buttonText: {
-    color: 'white',
+    color: "white",
     fontSize: 16,
-    fontWeight: '600',
+    fontWeight: "600",
   },
 });
