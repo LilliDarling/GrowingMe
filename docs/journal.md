@@ -89,3 +89,25 @@ incorrect. Currently, it is creating the post with the fake category but still g
 Bugs: 500 internal server error when creating a post with a unknown category. Still creates the post which I don't want.
 
 Resources: Current code.
+
+### 10/24/2024
+
+Over the past couple of days, I worked on:
+
+* Frontend initialization
+* Finished out the backend
+* Cleaned up the codebase for backend
+
+Thoughts: I haven't updated the journals as much as I would like but most of what I have done has been on a smaller scale. 
+I have spent some time researching into how to keep the codebase fairly clean without having to separate the web, ios, and 
+android out too much on the frontend. I was originally told to look into React-Native Expo and after some trial and error, 
+ultimately decided that it was more complicated compared to just using React-Native and installing the library for the web. 
+Since I am working on web first over the mobile apps, I wanted something that would be a lot more conducive to deploy with 
+AWS when it comes time as well as be able to expand into the mobile app space shortly after without having to raise the cost 
+too high. Expo seemed like a good option initially, but they were set up more for working on a Mac while I am on a PC and I 
+also didn't want to install extra apps without having spent time in React-Native first. 
+
+Bugs: Haven't been able to build the docker containers yet to test the connections since I have been working at a high 
+trafficked area on public wifi.
+
+Resources: documentation, stackoverflow, claude, 

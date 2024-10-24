@@ -16,12 +16,14 @@ testing.
 
 - FastAPI
 - MongoDB
+- React Native
 
 ### Other Technologies & Libraries
 
 - ODMantic
 - Motor
 - Docker
+- React Native Web
 
 ### Documentation
 
