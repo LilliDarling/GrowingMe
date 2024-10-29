@@ -1,4 +1,4 @@
-import { Link, Slot, Tabs } from 'expo-router';
+import { Link, Slot, Stack } from 'expo-router';
 import { Platform } from 'react-native';
 
 export default function Layout() {
@@ -14,11 +14,11 @@ export default function Layout() {
         <Slot />
       </div>
     );
+  } else {
+    return (
+      <Stack>
+        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+      </Stack>
+    );
   }
-  return (
-    <Tabs>
-      <Tabs.Screen name="home" options={{ title: 'Home' }} />
-      <Tabs.Screen name="articles" options={{ title: 'Articles' }} />
-    </Tabs>
-  );
 }
