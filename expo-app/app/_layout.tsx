@@ -1,24 +1,24 @@
-import { Link, Slot, Stack } from 'expo-router';
-import { Platform } from 'react-native';
+import { View } from "react-native";
+import { Image } from "expo-image";
+import { Slot } from "expo-router";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { cssInterop } from "nativewind";
+import { StatusBar } from "expo-status-bar";
+import { useSafeAreaEnv } from "react-native-css-interop/dist/runtime/api";
 
-export default function Layout() {
-  if (Platform.OS === 'web') {
-    return (
-      <div>
-        <header>
-          <nav>
-            <Link href="/home">Home</Link>
-            <Link href="/post">Articles</Link>
-          </nav>
-        </header>
+// component interops for nativewind - just need these once
+cssInterop(Image, { className: "style" });
+
+// TODO: Auth & Redirect
+export default function App() {
+  const queryClient = new QueryClient();
+
+  return (
+    <View style={[{ flex: 1 }, useSafeAreaEnv()]}>
+      <QueryClientProvider client={queryClient}>
         <Slot />
-      </div>
-    );
-  } else {
-    return (
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-      </Stack>
-    );
-  }
+      </QueryClientProvider>
+      <StatusBar style="auto" />
+    </View>
+  );
 }
