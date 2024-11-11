@@ -16,7 +16,7 @@ function WebNavigation() {
   
   const navItems: NavigationItem[] = [
     { title: 'Home', route: '/' },
-    { title: 'Post', route: '/post' }
+    { title: 'Articles', route: '/articles' }
   ];
 
   return (
@@ -70,9 +70,9 @@ function MobileNavigation() {
         }}
       />
       <Tabs.Screen
-        name="post"
+        name="articles"
         options={{
-          title: 'Post',
+          title: 'Articles',
           tabBarIcon: ({ color, size }) => (
             <MaterialIcons name="article" size={size} color={color} />
           ),
