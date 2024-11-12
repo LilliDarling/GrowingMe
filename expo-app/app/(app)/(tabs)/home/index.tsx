@@ -1,6 +1,6 @@
 import { Text, View } from "react-native";
 
-export default function AboutPage() {
+export default function Home() {
   return (
     <View
       style={{
@@ -9,7 +9,7 @@ export default function AboutPage() {
         alignItems: "center",
       }}
     >
-      <Text>About me page</Text>
+      <Text>Home Page</Text>
     </View>
   );
 }

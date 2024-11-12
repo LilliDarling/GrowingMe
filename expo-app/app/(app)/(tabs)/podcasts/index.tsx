@@ -1,6 +1,6 @@
 import { Text, View } from "react-native";
 
-export default function Article() {
+export default function PodcastsHome() {
   return (
     <View
       style={{
@@ -9,7 +9,7 @@ export default function Article() {
         alignItems: "center",
       }}
     >
-      <Text>Insert Post Here</Text>
+      <Text>Podcasts Page</Text>
     </View>
   );
 }

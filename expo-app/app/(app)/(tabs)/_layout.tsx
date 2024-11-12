@@ -15,9 +15,10 @@ function WebNavigation() {
   const pathname = usePathname();
 
   const navItems: NavigationItem[] = [
-    { title: "Home", route: "/" },
-    { title: "Articles", route: "/articles" },
+    { title: "Home", route: "/home" },
     { title: "About", route: "/about" },
+    { title: "Articles", route: "/articles" },
+    { title: "Podcasts", route: "/podcasts" },
   ];
 
   return (
@@ -62,11 +63,20 @@ function MobileNavigation() {
       }}
     >
       <Tabs.Screen
-        name="index"
+        name="home"
         options={{
           title: "Home",
           tabBarIcon: ({ color, size }) => (
             <MaterialIcons name="home" size={size} color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="about"
+        options={{
+          title: "About",
+          tabBarIcon: ({ color, size }) => (
+            <MaterialIcons name="person" size={size} color={color} />
           ),
         }}
       />
@@ -80,11 +90,11 @@ function MobileNavigation() {
         }}
       />
       <Tabs.Screen
-        name="about"
+        name="podcasts"
         options={{
-          title: "About",
+          title: "Podcasts",
           tabBarIcon: ({ color, size }) => (
-            <MaterialIcons name="person" size={size} color={color} />
+            <MaterialIcons name="podcasts" size={size} color={color} />
           ),
         }}
       />
@@ -102,3 +112,4 @@ export default function TabLayout() {
     </>
   );
 }
+
