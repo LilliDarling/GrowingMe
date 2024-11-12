@@ -1,6 +1,6 @@
 import { Text, View } from "react-native";
 
-export default function Post() {
+export default function ArticlesHome() {
   return (
     <View
       style={{
@@ -9,7 +9,7 @@ export default function Post() {
         alignItems: "center",
       }}
     >
-      <Text>Insert Post Here</Text>
+      <Text>Insert article page fill here here</Text>
     </View>
   );
 }

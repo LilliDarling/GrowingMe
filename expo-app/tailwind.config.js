@@ -1,4 +1,4 @@
-const colors = require("./constants/colors");
+const colors = require("./shared/constants/colors");
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
