@@ -1,9 +1,23 @@
-import { Text, View, Platform } from "react-native";
+import { Text, View, Platform, ScrollView } from "react-native";
 import { Image } from "expo-image";
+import Footer from '@/shared/components/Footer';
 
 export default function AboutPage() {
+  const PageContent = Platform.select({
+    web: WebContent,
+    default: MobileContent
+  });
 
-  const MobileLayout = () => (
+  return (
+    <ScrollView className="flex-1">
+      <PageContent />
+      <Footer />
+    </ScrollView>
+  );
+}
+
+function MobileContent() {
+  return (
     <View className="flex-1 p-4 bg-white">
       <Text className="text-2xl font-bold text-center mb-6">About Me</Text>
 
@@ -43,7 +57,7 @@ export default function AboutPage() {
         </View>
       </View>
 
-      <View className="items-center space-y-2">
+      <View className="items-center space-y-2 mb-4">
         <Text className="text-base italic text-center">
           "There are far better things ahead than any we leave behind."
         </Text>
@@ -51,8 +65,10 @@ export default function AboutPage() {
       </View>
     </View>
   );
+}
 
-  const DesktopLayout = () => (
+function WebContent() {
+  return (
     <View className="flex-1 p-4 bg-white">
       <Text className="text-2xl font-bold text-center mb-6">About Me</Text>
 
@@ -92,7 +108,7 @@ export default function AboutPage() {
         </View>
       </View>
 
-      <View className="items-center space-y-2">
+      <View className="items-center space-y-2 mb-4">
         <Text className="text-base italic text-center">
           "There are far better things ahead than any we leave behind."
         </Text>
@@ -100,9 +116,4 @@ export default function AboutPage() {
       </View>
     </View>
   );
-
-  return Platform.select({
-    web: <DesktopLayout />,
-    default: <MobileLayout />
-  });
 }
