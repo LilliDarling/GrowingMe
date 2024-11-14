@@ -1,4 +1,4 @@
-import React from "react";
+
 import { Platform, View, Text, ScrollView } from "react-native";
 import { Tabs, Link, usePathname, Slot } from "expo-router";
 import type { Href } from "expo-router";
@@ -79,7 +79,7 @@ function WebNavigation() {
             {navItems.map((item) => (
               <Link
                 key={item.route}
-                href={item.route as Href<string>}
+                href={item.route as Href}
                 className={`text-sm font-medium px-3 py-2 rounded-md transition-colors ${
                   pathname === item.route
                     ? "text-blue-600 bg-blue-50"
