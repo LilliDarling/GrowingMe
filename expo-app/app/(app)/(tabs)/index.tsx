@@ -1,6 +1,6 @@
 import { Redirect } from 'expo-router';
 
-export default function Index() {
+export default function WebRedirect() {
   return (
     <Redirect 
       href="/home"

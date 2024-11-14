@@ -1,4 +1,3 @@
-
 import { Platform, View, Text, ScrollView } from "react-native";
 import { Tabs, Link, usePathname, Slot } from "expo-router";
 import type { Href } from "expo-router";
@@ -120,7 +119,13 @@ function MobileNavigation() {
           }}
         >
           <Tabs.Screen
-            name="home"
+            name="index"
+            options={{
+              href: null,
+            }}
+          />
+          <Tabs.Screen
+            name="home/index"
             options={{
               title: "Home",
               tabBarIcon: ({ color, size }) => (
@@ -129,7 +134,7 @@ function MobileNavigation() {
             }}
           />
           <Tabs.Screen
-            name="about"
+            name="about/index"
             options={{
               title: "About",
               tabBarIcon: ({ color, size }) => (
@@ -138,7 +143,7 @@ function MobileNavigation() {
             }}
           />
           <Tabs.Screen
-            name="articles"
+            name="articles/index"
             options={{
               title: "Articles",
               tabBarIcon: ({ color, size }) => (
@@ -147,7 +152,7 @@ function MobileNavigation() {
             }}
           />
           <Tabs.Screen
-            name="podcasts"
+            name="podcasts/index"
             options={{
               title: "Podcasts",
               tabBarIcon: ({ color, size }) => (
