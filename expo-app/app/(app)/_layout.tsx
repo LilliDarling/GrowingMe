@@ -1,5 +1,5 @@
 import { Stack } from "expo-router";
-import React from "react";
+
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -16,9 +16,7 @@ export const unstable_settings = {
 export default function Layout() {
   return (
     <Stack
-      screenOptions={{
-        headerBackTitleVisible: false,
-      }}
+    
     >
       <Stack.Screen
         name="(tabs)"
