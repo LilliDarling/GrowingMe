@@ -1,28 +1,20 @@
-import { Geist, Geist_Mono } from "next/font/google";
-import "@/src/globals.css";
-import Navbar from "@/ui/NavBar";
+import Navbar from "@/ui/Navbar";
 import Footer from "@/ui/Footer";
+import '@/globals.css';
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+export const metadata = {
+  title: 'Growing Me',
+  description: 'A blog site',
+}
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body>
         <Navbar />
         <main>
           {children}
