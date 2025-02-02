@@ -16,19 +16,20 @@ testing.
 
 - FastAPI
 - MongoDB
-- React Native
+- NextJS
+- React
+- Typescript
 
 ### Other Technologies & Libraries
 
 - ODMantic
 - Motor
 - Docker
-- React Native Web
 
 ### Documentation
 
 - [API](https://github.com/LilliDarling/GrowingMe/blob/main/api/README.md)
-- [APP](https://github.com/LilliDarling/GrowingMe/blob/main/app/README.md)
+- [WEB](https://github.com/LilliDarling/GrowingMe/blob/main/web/README.md)
 
 ## Intended Market
 
