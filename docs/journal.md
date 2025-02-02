@@ -120,13 +120,17 @@ I worked on:
 
 * Frontend initialization with NextJS using TS
 * Removed Expo project
-* 
+* Integrated DaisyUI Beta
+* Started the Navbar following Figma design
 
 Thoughts: It has been awhile since I worked on this project due to becoming a founding engineer at a company called 
 AdeptExec. I have been consumed with the code as the sole developer until recently. Since we are using Expo, I chose 
 to switch the framework for this project because it didn't make much sense to create a mobile application just for a 
-blog site. I chose to go with NextJS instead since it is popular and I need another framework under my belt.
+blog site. I chose to go with NextJS instead since it is popular and I need another framework under my belt. I have 
+also integrated DaisyUI based off of a Senior SWE recommendation when using TailwindCSS. Took some getting used to but 
+I think I have it figured out. Definitely make sure you read docs and know what versions you are using. I seriously am 
+not cut out to be a Frontend dev though.
 
-Bugs: 
+Bugs: None so far
 
-Resources: 
+Resources: DaisyUI docs, TailwindCSS docs, Iconify, Next.js docs, 
