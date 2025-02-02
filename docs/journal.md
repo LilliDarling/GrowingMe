@@ -111,3 +111,22 @@ Bugs: Haven't been able to build the docker containers yet to test the connectio
 trafficked area on public wifi.
 
 Resources: documentation, stackoverflow, claude, 
+
+# Break to focus on Startup w/ AdeptExec LLC
+
+### 02/02/2025
+
+I worked on:
+
+* Frontend initialization with NextJS using TS
+* Removed Expo project
+* 
+
+Thoughts: It has been awhile since I worked on this project due to becoming a founding engineer at a company called 
+AdeptExec. I have been consumed with the code as the sole developer until recently. Since we are using Expo, I chose 
+to switch the framework for this project because it didn't make much sense to create a mobile application just for a 
+blog site. I chose to go with NextJS instead since it is popular and I need another framework under my belt.
+
+Bugs: 
+
+Resources: 
