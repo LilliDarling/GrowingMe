@@ -10,13 +10,13 @@ export default function Navbar() {
 
   return (
 	<nav className="navbar bg-base-100 flex-col">
-		<div className="w-full flex justify-between items-center py-4">
+		<div className="w-full flex justify-between items-center">
 			<div className="flex-1">
 				{/* insert image for logo here */}
 				<a className="btn btn-ghost text-xl">Growing Me</a>
 			</div>
 			<div className="flex-none">
-				<ul className="menu menu-horizontal px-1 list-none">
+				<ul className="menu menu-horizontal list-none">
 					<li>
 						<a href="#" className="w-8 h-8">
 							<Icon icon="fa6-brands:square-bluesky" />
@@ -39,7 +39,7 @@ export default function Navbar() {
 		<div className="w-full border-1 border-[#186733]" />
 
 		<div className="w-full flex justify-between items-center py-4">
-			<ul className="menu menu-horizontal px-1 list-none">
+			<ul className="menu menu-horizontal list-none">
 				<li>
 					<Link href="/" className="text-xl pr-8">
 						Home

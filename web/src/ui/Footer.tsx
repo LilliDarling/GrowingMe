@@ -4,8 +4,8 @@ import Image from 'next/image';
 
 export default function Footer() {
   return (
-    <footer className="navbar flex-col bg-base-100">
-		<div className="w-full flex justify-center">
+    <footer className="navbar flex-col bg-base-100 w-full justify-center">
+		<div className="flex">
 			<div className="">
 				<Image src="/public/leaf.png" alt="leaf" width={8} height={8} />
 			</div>
@@ -14,9 +14,9 @@ export default function Footer() {
 			</div>
 		</div>
 
-		<div className="flex p-0  m-0 w-full border-1 border-[#186733]" />
+		<div className="flex w-full border-1 border-[#186733]" />
 
-		<div className="w-full flex justify-evenly items-center">
+		<div className="items-center">
 			<ul className="menu menu-horizontal list-none">
 				<li>
 					<Link href="/" className="text-xl">
@@ -41,7 +41,7 @@ export default function Footer() {
 			</ul>
 		</div>
 		
-		<form className="w-full flex justify-center">
+		<form className="">
 			<fieldset className="form-control flex w-80">
 				<div className="join">
 					<input
@@ -54,8 +54,8 @@ export default function Footer() {
 			</fieldset>
 		</form>
 
-		<div className="flex w-full justify-center">
-			<ul className="menu menu-horizontal px-1 list-none">
+		<div className="">
+			<ul className="menu menu-horizontal list-none">
 				<li>
 					<a href="#" className="w-8 h-8">
 						<Icon icon="fa6-brands:square-bluesky" />
@@ -67,13 +67,13 @@ export default function Footer() {
 					</a>
 				</li>
 				<li>
-					<a href="#" className="w-8 h-8">
+					<a href="#" className="w-10 h-10">
 						<Icon icon="fa6-brands:discord" />
 					</a>
 				</li>
 			</ul>
 		</div>
-		<p className="flex w-full justify-center">Copyright © {new Date().getFullYear()} - All right reserved</p>
+		<p className="">Copyright © {new Date().getFullYear()} - All rights reserved</p>
 	</footer>
   )
 }
