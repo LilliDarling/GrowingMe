@@ -52,9 +52,9 @@ export default function Navbar() {
 				</li>
 				<li>
 					<Link href="/articles" className="text-xl px-8">
-					Articles
+						Articles
 					</Link>
-					</li>
+				</li>
 				<li>
 					<Link href="/gallery" className="text-xl px-8">
 						Gallery
