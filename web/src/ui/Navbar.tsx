@@ -40,23 +40,26 @@ export default function Navbar() {
 
 		<div className="w-full flex justify-between items-center py-4">
 			<ul className="menu menu-horizontal px-1 list-none">
-				{[
-					{ href: "/", text: "Home" },
-					{ href: "/about", text: "About" },
-					{ href: "/articles", text: "Articles" },
-					{ href: "/gallery", text: "Gallery" },
-					{ href: "/contact", text: "Contact" }
-				].map((link, index) => (
-					<li>
-						<Link 
-						key={link.href} 
-						href={link.href} 
-						className="text-xl mr-8 last:mr-0"
-						>
-							{link.text}
-						</Link>
+				<li>
+					<Link href="/" className="text-xl pr-8">
+						Home
+					</Link>
+				</li>
+				<li>
+					<Link href="/about" className="text-xl px-8">
+						About
+					</Link>
+				</li>
+				<li>
+					<Link href="/articles" className="text-xl px-8">
+					Articles
+					</Link>
 					</li>
-				))}
+				<li>
+					<Link href="/gallery" className="text-xl px-8">
+						Gallery
+					</Link>
+				</li>
 			</ul>
 		</div>
 	</nav>
