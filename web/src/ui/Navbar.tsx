@@ -19,17 +19,17 @@ export default function Navbar() {
 				<ul className="menu menu-horizontal px-1 list-none">
 					<li>
 						<a href="#" className="w-8 h-8">
-							<Icon icon="fa6-brands:square-bluesky" className="w-full h-full" />
+							<Icon icon="fa6-brands:square-bluesky" />
 						</a>
 					</li>
 					<li>
 						<a href="#" className="w-8 h-8">
-							<Icon icon="fa6-brands:tiktok" className="w-full h-full" />
+							<Icon icon="fa6-brands:tiktok" />
 						</a>
 					</li>
 					<li>
 						<a href="#" className="w-8 h-8">
-							<Icon icon="fa6-brands:discord" className="w-full h-full" />
+							<Icon icon="fa6-brands:discord" />
 						</a>
 					</li>
 				</ul>
