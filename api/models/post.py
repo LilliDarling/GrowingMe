@@ -25,6 +25,10 @@ class PostIn(Model):
     resources: List[Resource] = []
     category: str
 
+    model_config = {
+        "collection": "posts"
+    }
+
 
 class PostOut(Model):
     title: str

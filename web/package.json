@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@iconify/react": "^5.2.0",
+    "axios": "^1.7.9",
+    "gray-matter": "^4.0.3",
     "next": "15.1.6",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"

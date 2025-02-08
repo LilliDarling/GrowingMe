@@ -1,11 +1,11 @@
-import Navbar from "@/ui/Navbar";
-import Footer from "@/ui/Footer";
-import '@/globals.css';
+import Navbar from "@/lib/components/Navbar";
+import Footer from "@/lib/components/Footer";
+import "@/globals.css";
 
 export const metadata = {
-  title: 'Growing Me',
-  description: 'A blog site',
-}
+  title: "Growing Me",
+  description: "A blog site",
+};
 
 export default function RootLayout({
   children,
@@ -16,11 +16,9 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <Navbar />
-        <main>
-          {children}
-        </main>
+        <main>{children}</main>
         <Footer />
       </body>
     </html>
-  )
+  );
 }
