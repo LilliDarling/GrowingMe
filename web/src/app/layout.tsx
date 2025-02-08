@@ -3,22 +3,22 @@ import Footer from "@/lib/components/Footer";
 import "@/globals.css";
 
 export const metadata = {
-  title: "Growing Me",
-  description: "A blog site",
+    title: "Growing Me",
+    description: "A blog site",
 };
 
 export default function RootLayout({
-  children,
+  	children,
 }: {
-  children: React.ReactNode;
+  	children: React.ReactNode;
 }) {
-  return (
-    <html lang="en">
-      <body>
-        <Navbar />
-        <main>{children}</main>
-        <Footer />
-      </body>
-    </html>
-  );
+	return (
+		<html lang="en">
+			<body>
+				<Navbar />
+					<main>{children}</main>
+				<Footer />
+			</body>
+		</html>
+	);
 }
