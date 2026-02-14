@@ -1,5 +1,5 @@
 # Growing Me - Personal & Professional Blog Site
-
+`Under active development and complete rehaul`
 ## About  
 
 This project was created with the initial design and idea coming a few years before actually becoming a 
