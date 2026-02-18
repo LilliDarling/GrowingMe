@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Button from '$lib/components/shared/Button.svelte';
+	import Button from '../../../../app/src/lib/components/shared/Button.svelte';
 </script>
 
 <section

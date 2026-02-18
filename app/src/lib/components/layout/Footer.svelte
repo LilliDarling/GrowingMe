@@ -1,23 +1,29 @@
 <script lang="ts">
-	import SocialLinks from '$lib/components/shared/SocialLinks.svelte';
+	import SocialLinks from '../shared/SocialLinks.svelte';
 	import EmailSubscribe from '$lib/components/shared/EmailSubscribe.svelte';
+	import logoLeaf from '$lib/assets/logo-leaf.png';
 </script>
 
 <footer class="bg-surface-light-alt dark:bg-surface-dark-alt">
 	<div class="mx-auto max-w-6xl px-6 py-12">
-		<!-- Top section: Logo + Nav -->
-		<div class="flex flex-col items-center gap-8 md:flex-row md:justify-between">
+		<!-- Top section: Logo -->
+		<div class="flex justify-center">
 			<!-- Logo -->
-			<a href="/" class="flex items-center gap-3">
-				<img src="/images/logo-leaf.png" alt="Growing Me logo" class="h-10 w-10 rounded-full" />
-				<span class="font-heading text-lg font-semibold text-gray-900 dark:text-gray-100"
+			<a href="/" class="flex gap-5 items-center">
+				<img src={logoLeaf} alt="Growing Me logo" class="h-10 w-10 rounded-full" />
+				<span class="font-heading text-xl font-semibold text-gray-900 dark:text-gray-100"
 					>Growing Me</span
 				>
 			</a>
+		</div>
 
-			<!-- Nav links -->
+		<!-- Green divider -->
+		<div class="mx-auto flex max-w-6xl px-6 my-4 h-[2px] bg-brand"></div>
+
+		<!-- Nav links -->
+		<div class="flex justify-center py-2">
 			<nav>
-				<ul class="flex items-center gap-6">
+				<ul class="flex items-center gap-4">
 					<li>
 						<a
 							href="/"
@@ -57,28 +63,17 @@
 			</nav>
 		</div>
 
-		<!-- Green divider -->
-		<div class="my-8 h-[2px] bg-brand"></div>
-
 		<!-- Subscribe section -->
-		<div class="flex flex-col items-center gap-6 md:flex-row md:justify-between">
-			<div>
-				<h3 class="font-heading text-lg font-semibold text-gray-900 dark:text-gray-100">
-					Stay Updated
-				</h3>
-				<p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-					Subscribe for the latest articles and updates.
-				</p>
-			</div>
+		<div class="flex justify-center pt-8">
 			<EmailSubscribe />
 		</div>
 
 		<!-- Bottom: Social + Copyright -->
 		<div
-			class="mt-8 flex flex-col items-center gap-4 border-t border-sage-200 pt-8 md:flex-row md:justify-between dark:border-sage-700"
+			class="mt-8 flex flex-col items-center gap-4 pt-4 dark:border-sage-700"
 		>
 			<SocialLinks size={18} />
-			<p class="text-xs text-gray-500 dark:text-gray-500">
+			<p class="text-xs text-gray-500 dark:text-gray-500 py-3">
 				&copy; {new Date().getFullYear()} Growing Me. All rights reserved.
 			</p>
 		</div>

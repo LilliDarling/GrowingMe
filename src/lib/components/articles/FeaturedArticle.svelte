@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { PostMeta } from '$lib/utils/posts';
 	import { formatDate } from '$lib/utils/format-date';
-	import Button from '$lib/components/shared/Button.svelte';
+	import Button from '../../../../app/src/lib/components/shared/Button.svelte';
 
 	let { post }: { post: PostMeta } = $props();
 </script>

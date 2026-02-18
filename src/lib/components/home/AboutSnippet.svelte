@@ -1,6 +1,6 @@
 <script lang="ts">
 	import ImageWithBorder from '$lib/components/shared/ImageWithBorder.svelte';
-	import Button from '$lib/components/shared/Button.svelte';
+	import Button from '../../../../app/src/lib/components/shared/Button.svelte';
 </script>
 
 <section class="bg-white py-20 dark:bg-surface-dark">

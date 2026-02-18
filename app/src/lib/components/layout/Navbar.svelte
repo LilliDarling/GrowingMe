@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { page } from '$app/stores';
+	import { page } from '$app/state';
 	import { Search, Menu, X } from 'lucide-svelte';
 	import SocialLinks from '$lib/components/shared/SocialLinks.svelte';
-	import ThemeToggle from './ThemeToggle.svelte';
+	import ThemeToggle from '$lib/components/shared/ThemeToggle.svelte';
 
 	let scrolled = $state(false);
 	let mobileOpen = $state(false);
@@ -33,14 +33,14 @@
 
 <header
 	class="sticky top-0 z-50 transition-all duration-300 {scrolled
-		? 'bg-white/95 shadow-sm backdrop-blur-sm dark:bg-surface-dark/95'
-		: 'bg-white/80 backdrop-blur-sm dark:bg-surface-dark/80'}"
+		? 'bg-white/75 shadow-sm backdrop-blur-sm dark:bg-surface-dark/60'
+		: 'bg-white/80 backdrop-blur-sm dark:bg-surface-dark/60'}"
 >
 	<!-- Top row: Logo + Social -->
 	<div class="mx-auto flex max-w-6xl items-center justify-between px-6 py-3">
 		<a href="/" class="flex items-center gap-3">
-			<img src="/images/logo-leaf.png" alt="Growing Me logo" class="h-10 w-10 rounded-full" />
-			<span class="font-heading text-xl font-semibold text-gray-900 dark:text-gray-100"
+			<img src="../assets/logo-leaf.png" alt="Growing Me logo" class="h-10 w-10 rounded-full" />
+			<span class="font-heading text-xl font-semibold text-gray-900 dark:text-gray-700"
 				>Growing Me</span
 			>
 		</a>
@@ -66,11 +66,11 @@
 	</div>
 
 	<!-- Green divider -->
-	<div class="h-[2px] bg-brand"></div>
+	<div class="mx-auto flex max-w-6xl px-6 h-[2px] bg-brand"></div>
 
 	<!-- Bottom row: Nav links + Search (desktop) -->
 	<nav class="hidden md:block">
-		<div class="mx-auto flex max-w-6xl items-center justify-between px-6 py-2">
+		<div class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
 			<ul class="flex items-center gap-8">
 				{#each navLinks as link}
 					<li>
@@ -78,7 +78,7 @@
 							href={link.href}
 							class="text-sm font-medium transition-colors {isActive(
 								link.href,
-								$page.url.pathname
+								page.url.pathname
 							)
 								? 'text-brand dark:text-sage-300'
 								: 'text-gray-600 hover:text-brand dark:text-gray-400 dark:hover:text-sage-300'}"
@@ -117,7 +117,7 @@
 							onclick={() => (mobileOpen = false)}
 							class="block rounded-lg px-3 py-2 text-sm font-medium transition-colors {isActive(
 								link.href,
-								$page.url.pathname
+								page.url.pathname
 							)
 								? 'bg-sage-50 text-brand dark:bg-sage-900 dark:text-sage-300'
 								: 'text-gray-600 hover:bg-sage-50 dark:text-gray-400 dark:hover:bg-sage-900'}"

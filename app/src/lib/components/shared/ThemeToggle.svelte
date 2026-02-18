@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Sun, Moon } from 'lucide-svelte';
-	import { theme } from '$lib/stores/theme';
+	import { theme } from '$lib/store/theme';
 </script>
 
 <button
